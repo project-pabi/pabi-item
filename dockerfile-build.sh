@@ -1,1 +1,1 @@
-docker build --tag pabi-item .
+docker build --tag pabi-item --build-arg PATH=./ .
