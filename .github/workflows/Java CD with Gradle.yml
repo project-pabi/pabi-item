@@ -65,6 +65,8 @@ jobs:
         port: ${{ secrets.PORT }}
         script_stop: true
         script: |
+          cd /data
+          chmod 755 -R ./
           cd /data/item
           ./dockerfile-build.sh
           cd ../
