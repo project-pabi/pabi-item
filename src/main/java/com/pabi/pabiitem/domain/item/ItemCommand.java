@@ -2,16 +2,16 @@ package com.pabi.pabiitem.domain.item;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
-
-public class ItemInfo {
+public class ItemCommand {
 
   @Getter
+  @Builder
   @AllArgsConstructor
-  public static class Main {
+  public static class ItemRequest{
 
-    private Long id;
     private String name;
     private List<String> state;
     private List<String> keyword;

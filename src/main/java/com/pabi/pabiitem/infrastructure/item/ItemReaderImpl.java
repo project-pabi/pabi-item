@@ -19,4 +19,10 @@ public class ItemReaderImpl implements ItemReader {
     List<Item> all = itemRepository.findAll();
     return all;
   }
+
+  @Override
+  public Item getItem(Long id) {
+    Item all = itemRepository.findById(id).orElseThrow();
+    return all;
+  }
 }
