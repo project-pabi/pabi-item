@@ -2,6 +2,7 @@ package com.pabi.pabiitem.interfaces.item;
 
 import com.pabi.pabiitem.domain.item.AuctionType;
 import com.pabi.pabiitem.domain.item.DirectTradeLocation;
+import com.pabi.pabiitem.domain.item.ItemCategory;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
@@ -45,6 +46,9 @@ public class ItemDto {
     @ApiModelProperty(value = "경매방식", required = true)
     private AuctionType auctionType;
 
+    @ApiModelProperty(value = "카테고리", required = true)
+    private ItemCategory itemCategory;
+
     @NotNull
     @ApiModelProperty(value = "시작가", required = true)
     private Long startPrice;
@@ -84,6 +88,9 @@ public class ItemDto {
     @ApiModelProperty(value = "경매방식", required = true)
     private AuctionType auctionType;
 
+    @ApiModelProperty(value = "카테고리", required = true)
+    private ItemCategory itemCategory;
+
     @NotNull
     @ApiModelProperty(value = "시작가", required = true)
     private Long startPrice;
@@ -112,6 +119,8 @@ public class ItemDto {
     private String content;
     @ApiModelProperty(value = "경매방식", required = true)
     private AuctionType auctionType;
+    @ApiModelProperty(value = "카테고리", required = true)
+    private ItemCategory itemCategory;
     @ApiModelProperty(value = "시작가", required = true)
     private Long startPrice;
     @ApiModelProperty(value = "구매가")

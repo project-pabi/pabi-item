@@ -47,6 +47,9 @@ public class Item {
   @Enumerated(EnumType.STRING)
   private AuctionType auctionType;
 
+  @Enumerated(EnumType.STRING)
+  private ItemCategory itemCategory;
+
   private Long startPrice;
 
   private Long endPrice;
@@ -58,6 +61,7 @@ public class Item {
     Item item = new Item();
     item.setTitle(command.getTitle());
     item.setAuctionType(command.getAuctionType());
+    item.setItemCategory(command.getItemCategory());
     item.setContent(command.getContent());
     item.setState(command.getState());
     item.setKeyword(command.getKeyword());

@@ -17,6 +17,7 @@ public class ItemInfo {
     private List<String> keyword;
     private String content;
     private AuctionType auctionType;
+    private ItemCategory itemCategory;
     private Long startPrice;
     private Long endPrice;
     private DirectTradeLocation tradeLocation;

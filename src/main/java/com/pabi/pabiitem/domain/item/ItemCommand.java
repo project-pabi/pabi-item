@@ -17,6 +17,7 @@ public class ItemCommand {
     private List<String> keyword;
     private String content;
     private AuctionType auctionType;
+    private ItemCategory itemCategory;
     private Long startPrice;
     private Long endPrice;
     private DirectTradeLocation tradeLocation;
@@ -33,6 +34,7 @@ public class ItemCommand {
     private List<String> keyword;
     private String content;
     private AuctionType auctionType;
+    private ItemCategory itemCategory;
     private Long startPrice;
     private Long endPrice;
     private DirectTradeLocation tradeLocation;
