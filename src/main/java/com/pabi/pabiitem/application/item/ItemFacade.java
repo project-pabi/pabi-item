@@ -19,11 +19,11 @@ public class ItemFacade {
     return itemService.getItemList();
   }
 
-  public long createItem(ItemCommand.ItemRequest command){
+  public long createItem(ItemCommand.ItemCreateRequest command){
     return itemService.createItem(command);
   }
 
-  public void updateItem(Long id, ItemCommand.ItemRequest command) {
+  public void updateItem(Long id, ItemCommand.ItemUpdateRequest command) {
     itemService.updateItem(id, command);
   }
 

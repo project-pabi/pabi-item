@@ -1,7 +1,5 @@
 package com.pabi.pabiitem.domain.item;
 
-import com.pabi.pabiitem.domain.item.ItemCommand.ItemRequest;
-import com.sun.istack.NotNull;
 import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import java.util.List;
 import javax.persistence.Column;
@@ -32,19 +30,19 @@ public class Item {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @NotNull
-  private String name;
+  @Length(max = 100)
+  private String title;
 
   @Type(type = "string-list")
-  @Column(columnDefinition = "text[]", nullable = false)
+  @Column(columnDefinition = "text[]")
   private List<String> state;
 
   @Type(type = "string-list")
-  @Column(columnDefinition = "text[]", nullable = false)
+  @Column(columnDefinition = "text[]")
   private List<String> keyword;
 
   @Length(max = 3000)
-  private String explanation;
+  private String content;
 
   @Enumerated(EnumType.STRING)
   private AuctionType auctionType;
@@ -53,15 +51,14 @@ public class Item {
 
   private Long endPrice;
 
-  //directTransPlace 직거래 장소 객체로 추후 추가
   @Embedded
   private DirectTradeLocation tradeLocation;
 
-  public static Item createItem(ItemCommand.ItemRequest command) {
+  public static Item createItem(ItemCommand.ItemCreateRequest command) {
     Item item = new Item();
-    item.setName(command.getName());
+    item.setTitle(command.getTitle());
     item.setAuctionType(command.getAuctionType());
-    item.setExplanation(command.getExplanation());
+    item.setContent(command.getContent());
     item.setState(command.getState());
     item.setKeyword(command.getKeyword());
     item.setStartPrice(command.getStartPrice());
@@ -70,10 +67,10 @@ public class Item {
     return item;
   }
 
-  public void update(ItemRequest command) {
-    this.name = command.getName();
+  public void update(ItemCommand.ItemUpdateRequest command) {
+    this.title = command.getTitle();
     this.tradeLocation = command.getTradeLocation();
-    this.explanation = command.getExplanation();
+    this.content = command.getContent();
     this.startPrice = command.getStartPrice();
   }
 }

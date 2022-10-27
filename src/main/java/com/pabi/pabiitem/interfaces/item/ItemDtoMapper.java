@@ -13,7 +13,8 @@ import org.mapstruct.ReportingPolicy;
     unmappedTargetPolicy = ReportingPolicy.ERROR
 )
 public interface ItemDtoMapper {
+  ItemCommand.ItemCreateRequest of(ItemDto.ItemCreateRequest request);
 
-  ItemCommand.ItemRequest of(ItemDto.ItemRequest request);
+  ItemCommand.ItemUpdateRequest of(ItemDto.ItemUpdateRequest request);
   List<ItemDto.ItemResponse> of(List<ItemInfo.Main> info);
 }

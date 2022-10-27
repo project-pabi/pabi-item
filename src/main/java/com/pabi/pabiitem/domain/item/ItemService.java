@@ -6,9 +6,9 @@ public interface ItemService {
 
   List<ItemInfo.Main> getItemList();
 
-  long createItem(ItemCommand.ItemRequest command);
+  long createItem(ItemCommand.ItemCreateRequest command);
 
-  void updateItem(Long id, ItemCommand.ItemRequest command);
+  void updateItem(Long id, ItemCommand.ItemUpdateRequest command);
 
   void deleteItem(Long id);
 }

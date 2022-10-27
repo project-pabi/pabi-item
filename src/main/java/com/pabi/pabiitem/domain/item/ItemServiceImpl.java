@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class ItemServiceImpl implements ItemService {
+class ItemServiceImpl implements ItemService {
 
   private final ItemReader itemReader;
   private final ItemStore itemStore;
@@ -22,13 +22,13 @@ public class ItemServiceImpl implements ItemService {
 
   @Override
   @Transactional
-  public long createItem(ItemCommand.ItemRequest command) {
+  public long createItem(ItemCommand.ItemCreateRequest command) {
     return itemStore.createItem(command);
   }
 
   @Override
   @Transactional
-  public void updateItem(Long id, ItemCommand.ItemRequest command) {
+  public void updateItem(Long id, ItemCommand.ItemUpdateRequest command) {
     Item item = itemReader.getItem(id);
     itemStore.updateItem(item, command);
   }

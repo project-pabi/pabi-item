@@ -8,20 +8,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class ItemStoreImpl implements ItemStore {
+class ItemStoreImpl implements ItemStore {
 
   private final ItemRepository itemRepository;
 
 
   @Override
-  public long createItem(ItemCommand.ItemRequest command) {
+  public long createItem(ItemCommand.ItemCreateRequest command) {
     Item commandItem = Item.createItem(command);
     Item item = itemRepository.save(commandItem);
     return item.getId();
   }
 
   @Override
-  public void updateItem(Item item, ItemCommand.ItemRequest command) {
+  public void updateItem(Item item, ItemCommand.ItemUpdateRequest command) {
     item.update(command);
   }
 
