@@ -3,6 +3,7 @@ package com.pabi.pabiitem.interfaces.item;
 import com.pabi.pabiitem.domain.item.AuctionType;
 import com.pabi.pabiitem.domain.item.DirectTradeLocation;
 import com.pabi.pabiitem.domain.item.ItemCategory;
+import com.pabi.pabiitem.domain.item.ItemState;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
@@ -32,7 +33,7 @@ public class ItemDto {
     private String title;
 
     @ApiModelProperty(value = "상태")
-    private List<String> state;
+    private List<ItemState> state;
 
     @ApiModelProperty(value = "키워드")
     private List<String> keyword;
@@ -112,7 +113,7 @@ public class ItemDto {
     @ApiModelProperty(value = "이름", required = true)
     private String title;
     @ApiModelProperty(value = "상태")
-    private List<String> state;
+    private List<ItemState> state;
     @ApiModelProperty(value = "키워드")
     private List<String> keyword;
     @ApiModelProperty(value = "상세설명", required = true)

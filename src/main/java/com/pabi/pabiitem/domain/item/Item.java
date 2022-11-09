@@ -35,7 +35,7 @@ public class Item {
 
   @Type(type = "string-list")
   @Column(columnDefinition = "text[]")
-  private List<String> state;
+  private List<ItemState> state;
 
   @Type(type = "string-list")
   @Column(columnDefinition = "text[]")
@@ -76,5 +76,6 @@ public class Item {
     this.tradeLocation = command.getTradeLocation();
     this.content = command.getContent();
     this.startPrice = command.getStartPrice();
+    this.state = command.getState();
   }
 }
