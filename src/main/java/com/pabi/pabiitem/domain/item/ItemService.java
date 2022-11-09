@@ -1,9 +1,14 @@
 package com.pabi.pabiitem.domain.item;
 
-import com.pabi.pabiitem.domain.item.ItemInfo.Main;
 import java.util.List;
 
 public interface ItemService {
 
-  List<Main> getItemList();
+  List<ItemInfo.Main> getItemList();
+
+  long createItem(ItemCommand.ItemCreateRequest command);
+
+  void updateItem(Long id, ItemCommand.ItemUpdateRequest command);
+
+  void deleteItem(Long id);
 }

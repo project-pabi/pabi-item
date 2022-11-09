@@ -12,9 +12,14 @@ public class ItemInfo {
   public static class Main {
 
     private Long id;
-    private String name;
+    private String title;
     private List<String> state;
     private List<String> keyword;
-    private String explanation;
+    private String content;
+    private AuctionType auctionType;
+    private ItemCategory itemCategory;
+    private Long startPrice;
+    private Long endPrice;
+    private DirectTradeLocation tradeLocation;
   }
 }

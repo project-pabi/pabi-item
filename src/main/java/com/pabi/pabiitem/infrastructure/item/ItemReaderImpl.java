@@ -10,13 +10,19 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class ItemReaderImpl implements ItemReader {
+class ItemReaderImpl implements ItemReader {
 
   private final ItemRepository itemRepository;
 
   @Override
   public List<Item> getItemList() {
-    List<Item> all = itemRepository.findAll();
-    return all;
+    List<Item> items = itemRepository.findAll();
+    return items;
+  }
+
+  @Override
+  public Item getItem(Long id) {
+    Item item = itemRepository.findById(id).orElseThrow();
+    return item;
   }
 }
