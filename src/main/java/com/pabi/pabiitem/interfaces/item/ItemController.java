@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,9 +35,9 @@ public class ItemController {
 
   @PostMapping("/")
   @ApiOperation(value = "경매물품 생성")
-  public CommonResponse createItem(@RequestBody @Valid ItemDto.ItemCreateRequest request) {
+  public CommonResponse createItem(@RequestHeader("uuid") String uuid,@RequestBody @Valid ItemDto.ItemCreateRequest request) {
     var command = itemDtoMapper.of(request);
-    var response = itemFacade.createItem(command);
+    var response = itemFacade.createItem(uuid, command);
     return CommonResponse.success(response, "물품이 등록 되었습니다.");
   }
 

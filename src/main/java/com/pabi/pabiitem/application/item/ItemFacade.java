@@ -20,8 +20,8 @@ public class ItemFacade {
     return itemService.getItemList();
   }
 
-  public long createItem(@Valid ItemCommand.ItemCreateRequest command){
-    return itemService.createItem(command);
+  public long createItem(String uuid, @Valid ItemCommand.ItemCreateRequest command){
+    return itemService.createItem(command, uuid);
   }
 
   public void updateItem(Long id, ItemCommand.ItemUpdateRequest command) {
