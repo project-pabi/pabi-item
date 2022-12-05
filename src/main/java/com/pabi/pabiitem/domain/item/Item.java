@@ -1,7 +1,9 @@
 package com.pabi.pabiitem.domain.item;
 
+import com.vladmihalcea.hibernate.type.array.EnumArrayType;
 import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import java.util.List;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -14,16 +16,24 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter(AccessLevel.PROTECTED)
-@TypeDef(name = "string-list", typeClass = ListArrayType.class)
+@TypeDefs({
+    @TypeDef(name = "string-list", typeClass = ListArrayType.class),
+    @TypeDef(name = "enum-list", typeClass = EnumArrayType.class)
+})
 public class Item {
+
+  @Column(unique = true)
+  private String uuid = UUID.randomUUID().toString();
 
   @Id
   @Column(name = "id")
@@ -33,9 +43,17 @@ public class Item {
   @Length(max = 100)
   private String title;
 
-  @Type(type = "string-list")
-  @Column(columnDefinition = "text[]")
-  private List<String> state;
+  @Type(
+      type = "com.vladmihalcea.hibernate.type.array.ListArrayType",
+      parameters = {
+          @Parameter(
+              name = ListArrayType.SQL_ARRAY_TYPE,
+              value = "item_state"
+          )
+      }
+  )
+  @Column(columnDefinition = "item_state[]")
+  private List<ItemState> state;
 
   @Type(type = "string-list")
   @Column(columnDefinition = "text[]")
@@ -76,5 +94,6 @@ public class Item {
     this.tradeLocation = command.getTradeLocation();
     this.content = command.getContent();
     this.startPrice = command.getStartPrice();
+    this.state = command.getState();
   }
 }

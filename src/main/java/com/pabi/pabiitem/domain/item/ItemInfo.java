@@ -13,7 +13,7 @@ public class ItemInfo {
 
     private Long id;
     private String title;
-    private List<String> state;
+    private List<ItemState> state;
     private List<String> keyword;
     private String content;
     private AuctionType auctionType;

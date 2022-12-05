@@ -2,7 +2,9 @@ package com.pabi.pabiitem.interfaces.item;
 
 import com.pabi.pabiitem.domain.item.AuctionType;
 import com.pabi.pabiitem.domain.item.DirectTradeLocation;
+import com.pabi.pabiitem.domain.item.Item;
 import com.pabi.pabiitem.domain.item.ItemCategory;
+import com.pabi.pabiitem.domain.item.ItemState;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
@@ -12,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
@@ -32,7 +35,7 @@ public class ItemDto {
     private String title;
 
     @ApiModelProperty(value = "상태")
-    private List<String> state;
+    private List<ItemState> state;
 
     @ApiModelProperty(value = "키워드")
     private List<String> keyword;
@@ -112,7 +115,7 @@ public class ItemDto {
     @ApiModelProperty(value = "이름", required = true)
     private String title;
     @ApiModelProperty(value = "상태")
-    private List<String> state;
+    private List<ItemState> state;
     @ApiModelProperty(value = "키워드")
     private List<String> keyword;
     @ApiModelProperty(value = "상세설명", required = true)
@@ -128,5 +131,30 @@ public class ItemDto {
     @ApiModelProperty(value = "직거래장소", required = true)
     private DirectTradeLocation tradeLocation;
 
+  }
+
+  @Data
+  public static class ItemKafkaRequest {
+
+    private String userUuid;
+    private String uuid;
+    private String title;
+    private AuctionType auctionType;
+    private ItemCategory itemCategory;
+    private Long startPrice;
+    private Long endPrice;
+
+    static public ItemKafkaRequest createItemKafkaRequest(Item item, String userUuid) {
+      ItemKafkaRequest request = new ItemKafkaRequest();
+      request.setUserUuid(userUuid);
+      request.setUuid(item.getUuid());
+      request.setTitle(item.getTitle());
+      request.setAuctionType(item.getAuctionType());
+      request.setItemCategory(item.getItemCategory());
+      request.setStartPrice(item.getStartPrice());
+      request.setEndPrice(item.getEndPrice());
+
+      return request;
+    }
   }
 }
